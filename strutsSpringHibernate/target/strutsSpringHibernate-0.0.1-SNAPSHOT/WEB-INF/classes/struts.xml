@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- turn this off when relasing to production and action extenstion can 
+		be removed or set to anything -->
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+
+	<package name="user" namespace="/" extends="struts-default">
+
+		<action name="">
+			<result>login.jsp</result>
+		</action>
+		<action name="welcome" class="com.asheks.action.WelcomeUserAction">
+			<interceptor-ref name="execAndWait">
+			<param name="delay">0</param>
+			<param name="delaySleepInterval">5000</param>
+			</interceptor-ref>
+			<result name="wait">wait.jsp</result>
+			<result name="success">welcome.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+		<action name="loadautoCompleteAction" class="com.asheks.action.AutoCompleterAction">
+			
+			<result name="success">welcome.jsp</result>
+		</action>
+<!-- 		<action name="loadautoCompleteAction" class="com.asheks.action.AutoCompleterAction" -->
+<!-- 			method="display"> -->
+			
+<!-- 			<result name="none">welcome.jsp</result> -->
+<!-- 		</action> -->
+		<action name="autocomplete" class="com.asheks.action.AutoCompleterAction">
+			<result name="success">autoCompleted.jsp</result>
+		</action>
+	</package>
+
+
+	<!-- <include file="user/struts-user.xml"></include> -->
+	<!-- <include file="audit/struts-audit.xml"></include> -->
+</struts>
